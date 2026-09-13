@@ -1,550 +1,352 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Origens do Planeta de Diamante — 55 Cancri e</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#04070F;
+  --surface:#080D1A;
+  --card:#0C1220;
+  --border:rgba(180,160,255,0.12);
+  --violet:#9B6FFF;
+  --violet-light:#C4A9FF;
+  --cyan:#22D3EE;
+  --gold:#FFD580;
+  --text:#EEF0FF;
+  --muted:#6B7A9A;
+  --radius:14px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
 
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+/* STARS */
+.stars{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.star{position:absolute;background:#fff;border-radius:50%;animation:twinkle var(--d,3s) ease-in-out infinite var(--delay,0s)}
+@keyframes twinkle{0%,100%{opacity:0.1}50%{opacity:0.8}}
 
-  <meta name="description"
-        content="DIAMOND//FUTURE — experiência educacional futurista sobre 55 Cancri e, exoplanetas e o futuro da exploração espacial.">
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 6%;background:rgba(4,7,15,0.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:20px;color:var(--text);text-decoration:none;letter-spacing:0.5px}
+.nav-logo span{color:var(--gold)}
+nav a.cta-nav{background:linear-gradient(135deg,#7C3AED,#9B6FFF);color:#fff;padding:9px 22px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;transition:opacity .2s}
+nav a.cta-nav:hover{opacity:.85}
 
-  <title>DIAMOND//FUTURE — Planeta de Diamante</title>
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 6% 80px;position:relative;z-index:1}
+.hero::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-60%);width:800px;height:800px;background:radial-gradient(circle,rgba(155,111,255,0.1) 0%,transparent 65%);pointer-events:none}
+.planet-visual{width:180px;height:180px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#FFE580,#FFB800 40%,#B8860B 65%,#5D4200 85%,#1a0f00);box-shadow:0 0 80px rgba(255,213,128,0.3),0 0 160px rgba(155,111,255,0.15),inset -20px -20px 40px rgba(0,0,0,0.6);margin:0 auto 40px;animation:float 6s ease-in-out infinite;position:relative}
+.planet-ring{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotateX(75deg);width:260px;height:260px;border-radius:50%;border:2px solid rgba(255,213,128,0.25);pointer-events:none}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.hero-eyebrow{display:inline-block;background:rgba(155,111,255,0.12);border:1px solid rgba(155,111,255,0.3);color:var(--violet-light);font-size:13px;font-weight:600;padding:6px 18px;border-radius:99px;margin-bottom:28px;letter-spacing:.06em}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,7vw,76px);font-weight:700;line-height:1.06;letter-spacing:-1px;margin-bottom:24px}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p{font-size:clamp(16px,2vw,19px);color:var(--muted);max-width:560px;margin:0 auto 44px;line-height:1.75}
+.btn-primary{display:inline-block;background:linear-gradient(135deg,#7C3AED,#9B6FFF);color:#fff;padding:18px 44px;border-radius:10px;font-weight:700;font-size:18px;text-decoration:none;transition:transform .15s,opacity .2s}
+.btn-primary:hover{transform:translateY(-2px);opacity:.9}
+.hero-price{font-size:14px;color:var(--muted);margin-top:14px}
+.hero-price strong{color:var(--gold);font-size:22px}
+.hero-stats{display:flex;gap:48px;justify-content:center;margin-top:64px;flex-wrap:wrap}
+.stat{text-align:center}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:700;color:var(--gold);display:block;line-height:1}
+.stat-label{font-size:12px;color:var(--muted);margin-top:4px;letter-spacing:.04em}
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin>
+/* DIVIDER */
+.divider{border:none;border-top:1px solid var(--border);margin:0}
 
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+/* SECTIONS */
+section{padding:90px 6%;max-width:1100px;margin:0 auto;position:relative;z-index:1}
+.section-tag{font-size:11px;font-weight:600;letter-spacing:.12em;color:var(--violet-light);text-transform:uppercase;margin-bottom:12px}
+h2{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,4.5vw,50px);font-weight:700;letter-spacing:-.5px;margin-bottom:16px;line-height:1.12}
+.sub{color:var(--muted);font-size:17px;max-width:560px;margin-bottom:56px;line-height:1.75}
+.center{text-align:center}
+.center .sub{margin-left:auto;margin-right:auto}
 
-  <link rel="stylesheet" href="style.css">
+/* PAYWALL */
+.paywall-section{padding:90px 6%;position:relative;z-index:1}
+.paywall-section > div{max-width:1100px;margin:0 auto}
+.paywall-wrap{position:relative;border-radius:20px;overflow:hidden}
+.preview-content{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-bottom:0}
+.preview-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:28px}
+.preview-card h3{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;margin-bottom:10px}
+.preview-card p{font-size:14px;color:var(--muted);line-height:1.65}
+.module-num{font-size:11px;font-weight:600;color:var(--violet-light);letter-spacing:.08em;margin-bottom:8px}
+.topic-list{margin-top:14px;display:flex;flex-direction:column;gap:6px}
+.topic{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:8px}
+.topic::before{content:'◆';font-size:7px;color:var(--gold);flex-shrink:0}
+
+/* BLUR PAYWALL */
+.blur-overlay{position:relative;border-radius:16px;overflow:hidden}
+.blur-content{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;filter:blur(6px);pointer-events:none;user-select:none}
+.blur-overlay::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(4,7,15,0) 0%,rgba(4,7,15,0.97) 60%);border-radius:16px}
+.paywall-gate{position:relative;margin-top:-200px;z-index:10;text-align:center;padding:60px 20px 0}
+.lock-icon{font-size:48px;margin-bottom:20px;display:block}
+.paywall-gate h3{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;margin-bottom:12px}
+.paywall-gate p{color:var(--muted);font-size:16px;max-width:460px;margin:0 auto 32px;line-height:1.7}
+.paywall-price{margin-bottom:28px}
+.paywall-price .price-label{font-size:13px;color:var(--muted);margin-bottom:4px}
+.paywall-price .price-val{font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:700;color:var(--gold);line-height:1}
+.paywall-price .price-val span{font-size:26px;vertical-align:super;color:var(--muted)}
+.paywall-price .price-sub{font-size:13px;color:var(--muted);margin-top:6px}
+.btn-unlock{display:inline-block;background:linear-gradient(135deg,#7C3AED,#9B6FFF);color:#fff;padding:18px 48px;border-radius:10px;font-weight:700;font-size:18px;text-decoration:none;transition:transform .15s,opacity .2s;margin-bottom:14px}
+.btn-unlock:hover{transform:translateY(-2px);opacity:.9}
+.paywall-secure{font-size:12px;color:var(--muted)}
+
+/* INCLUDES */
+.includes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.include-item{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:22px;display:flex;align-items:flex-start;gap:14px}
+.include-icon{width:38px;height:38px;flex-shrink:0;background:rgba(155,111,255,0.1);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:20px}
+.include-item h4{font-size:15px;font-weight:600;margin-bottom:4px}
+.include-item p{font-size:13px;color:var(--muted);line-height:1.6}
+
+/* CONTACT */
+.contact-box{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:44px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.contact-box h3{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;margin-bottom:8px}
+.contact-box p{color:var(--muted);font-size:15px;max-width:400px}
+.btn-whatsapp{display:inline-flex;align-items:center;gap:10px;background:#22C55E;color:#fff;padding:16px 32px;border-radius:10px;font-weight:700;font-size:16px;text-decoration:none;white-space:nowrap;transition:background .2s,transform .15s;flex-shrink:0}
+.btn-whatsapp:hover{background:#16A34A;transform:translateY(-2px)}
+.btn-whatsapp svg{width:22px;height:22px}
+
+/* FINAL CTA */
+.final-cta{text-align:center;padding:100px 6%;position:relative;z-index:1}
+.final-cta::before{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(circle,rgba(155,111,255,0.08) 0%,transparent 70%);pointer-events:none}
+.final-cta h2{margin-bottom:16px}
+.final-cta p{color:var(--muted);font-size:17px;max-width:480px;margin:0 auto 40px}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);text-align:center;padding:32px 6%;font-size:13px;color:var(--muted);position:relative;z-index:1}
+footer a{color:var(--violet-light);text-decoration:none}
+
+@media(max-width:640px){
+  .hero-stats{gap:28px}
+  nav .cta-nav{display:none}
+  .contact-box{flex-direction:column}
+  .paywall-gate{margin-top:-160px}
+}
+</style>
 </head>
-
 <body>
 
-  <!-- FUNDO -->
-  <div class="stars"></div>
+<!-- STARFIELD -->
+<div class="stars" id="stars"></div>
 
-  <!-- NAVBAR -->
-  <header class="nav">
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">55 Cancri <span>e</span></a>
+  <a class="cta-nav" href="https://mpago.la/2djKV1Y" target="_blank">Acessar curso</a>
+</nav>
 
-    <a class="logo" href="#top">
-      DIAMOND<span>//</span>FUTURE
-    </a>
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <div class="hero-eyebrow">✦ Curso exclusivo de astronomia</div>
+    <div class="planet-visual">
+      <div class="planet-ring"></div>
+    </div>
+    <h1>As Origens do<br><em>Planeta de Diamante</em></h1>
+    <p>Mergulhe na ciência por trás de 55 Cancri e — o exoplaneta coberto de diamante a 40 anos-luz da Terra. Do Big Bang à sua formação extraordinária.</p>
+    <a href="https://mpago.la/2djKV1Y" target="_blank" class="btn-primary">Desbloquear curso completo</a>
+    <div class="hero-price">Acesso vitalício por apenas <strong>R$600</strong></div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">40</span><div class="stat-label">Anos-luz da Terra</div></div>
+      <div class="stat"><span class="stat-num">2x</span><div class="stat-label">O tamanho da Terra</div></div>
+      <div class="stat"><span class="stat-num">2000°C</span><div class="stat-label">Temperatura da superfície</div></div>
+    </div>
+  </div>
+</div>
 
-    <nav>
-      <a href="#mundo">O mundo</a>
-      <a href="#conteudo">Conteúdo</a>
-      <a href="#futuro">Futuro</a>
-    </nav>
+<hr class="divider">
 
-    <a
-      class="nav-buy"
-      href="https://mpago.la/1HrX5xa"
-      target="_blank"
-      rel="noopener noreferrer">
-      COMPRAR
-    </a>
+<!-- O QUE VOCÊ APRENDE -->
+<section class="center">
+  <div class="section-tag">Conteúdo</div>
+  <h2>Uma jornada pela formação<br>de um mundo extraordinário</h2>
+  <p class="sub">Do nascimento do universo até a composição única de 55 Cancri e — conteúdo denso, acessível e fascinante.</p>
+  <div class="includes-grid">
+    <div class="include-item">
+      <div class="include-icon">🌌</div>
+      <div><h4>Origem do universo</h4><p>Como o Big Bang criou os elementos que formam planetas de diamante.</p></div>
+    </div>
+    <div class="include-item">
+      <div class="include-icon">⭐</div>
+      <div><h4>Formação estelar</h4><p>O papel da estrela 55 Cancri A na criação deste sistema exótico.</p></div>
+    </div>
+    <div class="include-item">
+      <div class="include-icon">💎</div>
+      <div><h4>Geologia de diamante</h4><p>Por que este planeta tem manto de diamante e crosta de grafite.</p></div>
+    </div>
+    <div class="include-item">
+      <div class="include-icon">🔭</div>
+      <div><h4>Como foi descoberto</h4><p>A ciência por trás da detecção e análise espectroscópica do planeta.</p></div>
+    </div>
+    <div class="include-item">
+      <div class="include-icon">🌡️</div>
+      <div><h4>Condições extremas</h4><p>Temperatura, pressão, órbita e o que torna 55 Cancri e tão único.</p></div>
+    </div>
+    <div class="include-item">
+      <div class="include-icon">🚀</div>
+      <div><h4>Futuro da pesquisa</h4><p>O que o James Webb e próximas missões podem revelar sobre ele.</p></div>
+    </div>
+  </div>
+</section>
 
-  </header>
+<hr class="divider">
 
+<!-- MÓDULOS — PAYWALL -->
+<div class="paywall-section">
+  <div>
+    <div class="section-tag">Grade do curso</div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(30px,4.5vw,50px);font-weight:700;margin-bottom:16px">Módulos do curso</h2>
+    <p class="sub" style="color:var(--muted);font-size:17px;margin-bottom:40px">Os primeiros módulos são uma amostra gratuita. O conteúdo completo exige acesso.</p>
 
-  <main id="top">
-
-    <!-- HERO -->
-    <section class="hero">
-
-      <div class="hero-copy">
-
-        <div class="eyebrow">
-          EXPERIÊNCIA PREMIUM · DF-01
+    <!-- PREVIEW LIVRE -->
+    <div class="preview-content" style="margin-bottom:24px">
+      <div class="preview-card">
+        <div class="module-num">MÓDULO 01 — GRATUITO</div>
+        <h3>O Universo e os Elementos</h3>
+        <p>Como o Big Bang criou hidrogênio, hélio e, eventualmente, carbono — o elemento-chave do planeta de diamante.</p>
+        <div class="topic-list">
+          <div class="topic">Nucleossíntese estelar</div>
+          <div class="topic">Por que carbono é tão especial</div>
+          <div class="topic">Supernovas e dispersão de elementos</div>
         </div>
-
-        <h1>
-          O FUTURO<br>
-          DO <span>PLANETA</span><br>
-          DE DIAMANTE
-        </h1>
-
-        <p>
-          Uma jornada digital pelo universo dos exoplanetas,
-          pela ciência dos mundos extremos e pelas possibilidades
-          da exploração espacial.
-        </p>
-
-        <div class="actions">
-
-          <a
-            class="primary"
-            href="https://mpago.la/1HrX5xa"
-            target="_blank"
-            rel="noopener noreferrer">
-            ADQUIRIR ACESSO · R$ 2.000
-          </a>
-
-          <a
-            class="ghost"
-            href="#conteudo">
-            VER CONTEÚDO ↓
-          </a>
-
+      </div>
+      <div class="preview-card">
+        <div class="module-num">MÓDULO 02 — GRATUITO</div>
+        <h3>O Sistema 55 Cancri</h3>
+        <p>Conheça a estrela anfitriã e os 5 planetas que orbitam ao seu redor, com foco no exótico planeta e.</p>
+        <div class="topic-list">
+          <div class="topic">Localização e distância da Terra</div>
+          <div class="topic">A estrela 55 Cancri A</div>
+          <div class="topic">Os cinco planetas do sistema</div>
         </div>
-
-        <div class="secure">
-          ◇ PAGAMENTO EXTERNO · MERCADO PAGO · ACESSO PREMIUM
-        </div>
-
       </div>
-
-
-      <!-- PLANETA -->
-      <div class="planet-stage">
-
-        <div class="ring r1"></div>
-        <div class="ring r2"></div>
-
-        <div class="planet">
-
-          <div class="facet f1"></div>
-          <div class="facet f2"></div>
-          <div class="facet f3"></div>
-
-        </div>
-
-        <div class="orbit-dot"></div>
-
-        <div class="readout">
-
-          <span>EXOPLANET</span>
-
-          <b>55 CANCRI e</b>
-
-          <small>
-            ~40 ANOS-LUZ
-          </small>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ESTATÍSTICAS -->
-    <section class="stats">
-
-      <div>
-        <b>55 Cancri e</b>
-        <span>super-Terra</span>
-      </div>
-
-      <div>
-        <b>~40</b>
-        <span>anos-luz da Terra</span>
-      </div>
-
-      <div>
-        <b>EXTREMO</b>
-        <span>calor e pressão</span>
-      </div>
-
-      <div>
-        <b>FUTURO</b>
-        <span>observação espacial</span>
-      </div>
-
-    </section>
-
-
-    <!-- O MUNDO -->
-    <section id="mundo" class="section intro">
-
-      <div>
-
-        <div class="section-tag">
-          01 / O MUNDO
-        </div>
-
-        <h2>
-          Um laboratório planetário
-          a dezenas de anos-luz.
-        </h2>
-
-      </div>
-
-
-      <div>
-
-        <p>
-          55 Cancri e é uma super-Terra que orbita muito
-          perto de sua estrela. Seu ambiente extremo oferece
-          aos cientistas uma oportunidade para estudar como
-          planetas muito diferentes da Terra podem se comportar.
-        </p>
-
-        <p>
-          A antiga imagem popular de um “planeta feito de
-          diamante” é uma hipótese interessante, mas não uma
-          descrição confirmada de toda a superfície.
-          A composição e a atmosfera continuam sendo
-          investigadas.
-        </p>
-
-      </div>
-
-    </section>
-
-
-    <!-- CONTEÚDO -->
-    <section id="conteudo" class="section">
-
-      <div class="section-tag">
-        02 / ÁREA PREMIUM
-      </div>
-
-      <h2>
-        O que você vai explorar
-      </h2>
-
-
-      <div class="modules">
-
-        <!-- MÓDULO 1 -->
-        <article>
-
-          <span>01</span>
-
-          <h3>
-            O Planeta
-          </h3>
-
-          <p>
-            Localização, características, órbita e condições
-            extremas de 55 Cancri e.
-          </p>
-
-          <em>
-            LIBERADO
-          </em>
-
-        </article>
-
-
-        <!-- MÓDULO 2 -->
-        <article>
-
-          <span>02</span>
-
-          <h3>
-            Diamantes cósmicos
-          </h3>
-
-          <p>
-            Como pressão, temperatura e carbono podem
-            produzir estruturas cristalinas.
-          </p>
-
-          <em>
-            PREMIUM
-          </em>
-
-        </article>
-
-
-        <!-- MÓDULO 3 -->
-        <article>
-
-          <span>03</span>
-
-          <h3>
-            Exoplanetas
-          </h3>
-
-          <p>
-            Como telescópios detectam e estudam mundos
-            fora do Sistema Solar.
-          </p>
-
-          <em>
-            PREMIUM
-          </em>
-
-        </article>
-
-
-        <!-- MÓDULO 4 -->
-        <article>
-
-          <span>04</span>
-
-          <h3>
-            Atmosferas
-          </h3>
-
-          <p>
-            Espectroscopia, gases e o que a luz revela
-            sobre planetas distantes.
-          </p>
-
-          <em>
-            PREMIUM
-          </em>
-
-        </article>
-
-
-        <!-- MÓDULO 5 -->
-        <article>
-
-          <span>05</span>
-
-          <h3>
-            Mineração espacial
-          </h3>
-
-          <p>
-            O que seria necessário para transformar
-            recursos espaciais em tecnologia.
-          </p>
-
-          <em>
-            PREMIUM
-          </em>
-
-        </article>
-
-
-        <!-- MÓDULO 6 -->
-        <article>
-
-          <span>06</span>
-
-          <h3>
-            O futuro
-          </h3>
-
-          <p>
-            Cenários possíveis para telescópios,
-            robótica e exploração interestelar.
-          </p>
-
-          <em>
-            PREMIUM
-          </em>
-
-        </article>
-
-      </div>
-
-    </section>
-
-
-    <!-- ÁREA DE VENDA -->
-    <section class="premium">
-
-      <div>
-
-        <div class="section-tag">
-          ACESSO COMPLETO
-        </div>
-
-        <h2>
-          Entre na próxima fronteira.
-        </h2>
-
-        <p>
-          Uma experiência educacional criada para apresentar
-          ciência espacial de forma visual, organizada e futurista.
-        </p>
-
-
-        <ul>
-
-          <li>
-            Conteúdo completo em módulos
-          </li>
-
-          <li>
-            Material digital de apoio
-          </li>
-
-          <li>
-            Experiência responsiva para celular e PC
-          </li>
-
-          <li>
-            Atualizações futuras da plataforma
-          </li>
-
-        </ul>
-
-      </div>
-
-
-      <!-- CARD DE PREÇO -->
-      <div class="price-card">
-
-        <div class="small">
-          ACESSO PREMIUM
-        </div>
-
-        <div class="price">
-
-          <small>
-            R$
-          </small>
-
-          2.000
-
-          <span>
-            ,00
-          </span>
-
-        </div>
-
-        <p>
-          Pagamento processado pelo Mercado Pago.
-        </p>
-
-
-        <a
-          class="primary full"
-          href="https://mpago.la/1HrX5xa"
-          target="_blank"
-          rel="noopener noreferrer">
-
-          COMPRAR AGORA ↗
-
-        </a>
-
-
-        <small class="fine">
-          Ao clicar, você será direcionado ao checkout
-          informado pelo vendedor.
-        </small>
-
-      </div>
-
-    </section>
-
-
-    <!-- FUTURO -->
-    <section id="futuro" class="section future">
-
-      <div class="section-tag">
-        03 / FUTURO
-      </div>
-
-      <h2>
-        O verdadeiro tesouro
-        é o conhecimento.
-      </h2>
-
-
-      <div class="timeline">
-
-        <div>
-
-          <b>
-            AGORA
-          </b>
-
-          <span>
-            Observar mundos extremos com telescópios espaciais.
-          </span>
-
-        </div>
-
-
-        <div>
-
-          <b>
-            AMANHÃ
-          </b>
-
-          <span>
-            Instrumentos mais precisos para estudar atmosferas.
-          </span>
-
-        </div>
-
-
-        <div>
-
-          <b>
-            DEPOIS
-          </b>
-
-          <span>
-            Robótica e novas tecnologias para explorar
-            o espaço profundo.
-          </span>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- CTA FINAL -->
-    <section class="final-cta">
-
-      <div class="section-tag">
-        DIAMOND//FUTURE
-      </div>
-
-      <h2>
-        SUA JORNADA<br>
-        COMEÇA AGORA.
-      </h2>
-
-      <p>
-        Explore o futuro dos mundos extremos.
-      </p>
-
-      <a
-        class="primary"
-        href="https://mpago.la/1HrX5xa"
-        target="_blank"
-        rel="noopener noreferrer">
-
-        ACESSAR POR R$ 2.000 ↗
-
-      </a>
-
-    </section>
-
-  </main>
-
-
-  <!-- RODAPÉ -->
-  <footer>
-
-    <div class="logo">
-      DIAMOND<span>//</span>FUTURE
     </div>
 
-    <p>
-      Projeto educacional e conceitual sobre ciência
-      planetária e exploração espacial.
-    </p>
+    <!-- BLUR + PAYWALL -->
+    <div class="blur-overlay">
+      <div class="blur-content">
+        <div class="preview-card">
+          <div class="module-num">MÓDULO 03</div>
+          <h3>Formação do Planeta</h3>
+          <p>Como 55 Cancri e se formou a partir de um disco protoplanetário rico em carbono — e por que isso resultou em diamante.</p>
+          <div class="topic-list">
+            <div class="topic">Disco de acreção e temperatura</div>
+            <div class="topic">Diferenciação planetária</div>
+            <div class="topic">Por que carbono virou diamante</div>
+          </div>
+        </div>
+        <div class="preview-card">
+          <div class="module-num">MÓDULO 04</div>
+          <h3>Estrutura Interna</h3>
+          <p>As camadas do planeta: crosta de grafite, manto de diamante e núcleo de ferro-silício sob pressão extrema.</p>
+          <div class="topic-list">
+            <div class="topic">Pressão e temperatura no interior</div>
+            <div class="topic">Manto de diamante — estimativas</div>
+            <div class="topic">Comparação com a Terra</div>
+          </div>
+        </div>
+        <div class="preview-card">
+          <div class="module-num">MÓDULO 05</div>
+          <h3>Condições da Superfície</h3>
+          <p>Com 2000°C e órbita de 18 horas, 55 Cancri e é um dos ambientes mais extremos já descobertos.</p>
+          <div class="topic-list">
+            <div class="topic">Órbita ultra-curta</div>
+            <div class="topic">Marés gravitacionais</div>
+            <div class="topic">Ausência de atmosfera</div>
+          </div>
+        </div>
+        <div class="preview-card">
+          <div class="module-num">MÓDULO 06</div>
+          <h3>Descoberta e Detecção</h3>
+          <p>A ciência por trás da descoberta — trânsito estelar, espectroscopia e os telescópios que revelaram este mundo.</p>
+          <div class="topic-list">
+            <div class="topic">Método do trânsito</div>
+            <div class="topic">Análise espectral</div>
+            <div class="topic">Missão Spitzer e Kepler</div>
+          </div>
+        </div>
+        <div class="preview-card">
+          <div class="module-num">MÓDULO 07</div>
+          <h3>O que o James Webb Revelou</h3>
+          <p>As observações mais recentes do JWST e o que aprendemos sobre a atmosfera e superfície do planeta.</p>
+          <div class="topic-list">
+            <div class="topic">Dados do JWST (2023)</div>
+            <div class="topic">Indícios de atmosfera secundária</div>
+            <div class="topic">Vulcões e atividade geológica</div>
+          </div>
+        </div>
+        <div class="preview-card">
+          <div class="module-num">MÓDULO 08</div>
+          <h3>Futuro da Pesquisa</h3>
+          <p>O que vem por aí: próximas missões, tecnologias de detecção e o que ainda não sabemos sobre 55 Cancri e.</p>
+          <div class="topic-list">
+            <div class="topic">Missões planejadas para a década</div>
+            <div class="topic">Perguntas em aberto</div>
+            <div class="topic">Importância para a busca por vida</div>
+          </div>
+        </div>
+      </div>
 
-    <a
-      href="https://mpago.la/1HrX5xa"
-      target="_blank"
-      rel="noopener noreferrer">
+      <!-- GATE -->
+      <div class="paywall-gate">
+        <span class="lock-icon">🔒</span>
+        <h3>Conteúdo exclusivo para alunos</h3>
+        <p>Os módulos 3 a 8 estão disponíveis apenas para quem adquiriu o curso. Desbloqueie agora e mergulhe fundo neste mundo extraordinário.</p>
+        <div class="paywall-price">
+          <div class="price-label">Acesso vitalício por</div>
+          <div class="price-val"><span>R$</span>600</div>
+          <div class="price-sub">Pagamento seguro via Mercado Pago</div>
+        </div>
+        <a href="https://mpago.la/2djKV1Y" target="_blank" class="btn-unlock">💎 Desbloquear curso completo</a><br>
+        <div class="paywall-secure">🔒 Compra 100% segura · Acesso imediato após confirmação</div>
+      </div>
+    </div>
+  </div>
+</div>
 
-      ACESSAR CHECKOUT
+<hr class="divider">
 
+<!-- SUPORTE -->
+<div style="padding:90px 6%;max-width:1100px;margin:0 auto;position:relative;z-index:1">
+  <div class="contact-box">
+    <div>
+      <h3>Suporte pós-compra</h3>
+      <p>Após adquirir o curso, você tem acesso ao suporte direto via WhatsApp para tirar todas as suas dúvidas sobre o conteúdo.</p>
+    </div>
+    <a href="https://wa.me/5561993730064" target="_blank" class="btn-whatsapp">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Falar no WhatsApp
     </a>
+  </div>
+</div>
 
-  </footer>
+<!-- CTA FINAL -->
+<div class="final-cta">
+  <div class="section-tag">Comece agora</div>
+  <h2>Pronto para descobrir<br>o planeta de diamante?</h2>
+  <p>8 módulos completos, suporte via WhatsApp e acesso vitalício ao conteúdo.</p>
+  <a href="https://mpago.la/2djKV1Y" target="_blank" class="btn-primary">💎 Acessar curso — R$600</a>
+</div>
 
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Origens do Planeta de Diamante · Suporte: <a href="https://wa.me/5561993730064">(61) 99373-0064</a></p>
+</footer>
 
-  <script src="script.js"></script>
-
+<script>
+// Starfield
+const stars = document.getElementById('stars');
+for(let i=0;i<180;i++){
+  const s=document.createElement('div');
+  s.className='star';
+  const size=Math.random()*2+0.5;
+  s.style.cssText=`width:${size}px;height:${size}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${2+Math.random()*4}s;--delay:${Math.random()*4}s;opacity:${Math.random()*.5+.1}`;
+  stars.appendChild(s);
+}
+</script>
 </body>
 </html>
